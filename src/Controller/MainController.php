@@ -20,4 +20,10 @@ class MainController extends AbstractController
             'vegetables' => $vegetables,
         ]);
     }
+
+    #[Route('/contact', name: 'contact')]
+    public function contact(): Response
+    {
+        return $this->render('main/contact.html.twig');
+    }
 }
