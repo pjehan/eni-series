@@ -4,5 +4,20 @@
 
 {% block body %}
     <h1>Contact</h1>
+
+    <ul>
+        <li>
+            Téléphone :
+            <a href="tel:{{ tel }}">
+                {{ tel }}
+            </a>
+        </li>
+        <li>
+            Email :
+            <a href="mailto:{{ email }}">
+                {{ email }}
+            </a>
+        </li>
+    </ul>
 {% endblock %}
 
