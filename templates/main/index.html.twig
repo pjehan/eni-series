@@ -1,6 +1,15 @@
-{% extends 'base.html.twig' %}
+{#{% set city = 'Ougadougou' %}#}
+{%
+    set book = {
+        'title': 'ENI Symfony',
+        'year': 2022,
+        'author': 'ENI',
+        'price': 19.99
+    }
+%}
+{% extends 'layout.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
 <style>
@@ -9,7 +18,50 @@
 </style>
 
 <div class="example-wrapper">
+    {# Affichage du nom du controlleur #}
     <h1>Hello {{ controller_name }}! ✅</h1>
+
+    <p>Ville : {{ city|capitalize }}</p>
+
+    {#{{ dump(vegetables) }}#}
+
+    {% if city == 'Ouagadougou' %}
+        <p>Condition remplie !</p>
+    {% else %}
+        <p>Ce n'est pas Ouaga</p>
+    {% endif %}
+
+    <p>J'ai acheté {{ vegetables|length }} légumes.</p>
+
+    {# <?php foreach ($vegetables as $vegetable): ?> #}
+    {% for vegetable in vegetables %}
+        <p>
+            {{ vegetable }}
+            {% if loop.first %}
+                (mon préféré)
+            {% endif %}
+        </p>
+    {% else %}
+        <p>Pas de légumes !</p>
+    {% endfor %}
+
+    <p>Légumes : {{ vegetables|join(', ', ' et enfin ') }}</p>
+
+    <p>Titre du livre : {{ book.title }}</p>
+
+    {% for key, val in book %}
+        {# <p>{{ key ~ ' : ' ~ val }}</p>#}
+        <p>
+            {{ key }} :
+            {% if key == 'price' %}
+                {{ val|format_currency('EUR', locale='fr') }}
+            {% else %}
+                {{ val }}
+            {% endif %}
+        </p>
+    {% endfor %}
+
+    <p>Aujourd'hui : {{ 'now'|date('d/m/Y') }}</p>
 
     This friendly message is coming from:
     <ul>
