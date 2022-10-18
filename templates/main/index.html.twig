@@ -63,6 +63,10 @@
 
     <p>Aujourd'hui : {{ 'now'|date('d/m/Y') }}</p>
 
+    {% set message = '<h1>Hello :)</h1>' %}
+
+    {{ message|raw }}
+
     This friendly message is coming from:
     <ul>
         <li>Your controller at <code><a href="{{ 'D:/wamp64/www/series/src/Controller/MainController.php'|file_link(0) }}">src/Controller/MainController.php</a></code></li>
