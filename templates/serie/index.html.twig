@@ -7,6 +7,8 @@
 {% block body %}
     <h1>Liste des séries</h1>
 
+    <a href="{{ path('series_new') }}">Ajouter une série</a>
+
     <ul>
         {% for serie in series %}
             <li>
