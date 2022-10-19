@@ -12,7 +12,20 @@ class SerieController extends AbstractController
     #[Route('/', name: 'series_list')]
     public function list(): Response
     {
-        return $this->render('serie/index.html.twig');
+        $series = [
+            [
+                'id' => 1,
+                'title' => 'Game of thrones'
+            ],
+            [
+                'id' => 2,
+                'title' => 'The office'
+            ]
+        ];
+
+        return $this->render('serie/index.html.twig', [
+            'series' => $series
+        ]);
     }
 
     #[Route('/{id}', name: 'series_detail', requirements: ['id' => '\d+'])]

@@ -6,6 +6,17 @@
 
 {% block body %}
     <h1>Liste des séries</h1>
+
+    <ul>
+        {% for serie in series %}
+            <li>
+                <a href="{{ path('series_detail', {'id': serie.id}) }}">
+                    {{ serie.title }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
 {% endblock %}
 
 
