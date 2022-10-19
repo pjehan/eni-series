@@ -12,6 +12,7 @@ class SerieController extends AbstractController
     #[Route('/', name: 'series_list')]
     public function list(): Response
     {
+        // TODO: Récupérer les séries en base de données
         $series = [
             [
                 'id' => 1,
@@ -29,9 +30,13 @@ class SerieController extends AbstractController
     }
 
     #[Route('/{id}', name: 'series_detail', requirements: ['id' => '\d+'])]
-    public function detail(): Response
+    public function detail(int $id): Response
     {
-        return $this->render('serie/detail.html.twig');
+        // TODO: Récupérer la série à afficher en base de données
+
+        return $this->render('serie/detail.html.twig', [
+            'id' => $id
+        ]);
     }
 
     #[Route('/new', name: 'series_new')]
