@@ -1,8 +1,18 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Détails d'une série{% endblock %}
+{% block title %}Détails {{ serie.name }}{% endblock %}
 
 {% block body %}
-    <h1>Détails de la série n°{{ id }}</h1>
+
+    <section class="serie-details">
+        <img src="{{ asset('uploads/posters/series/' ~ serie.poster) }}" alt="{{ serie.name }}">
+        <div>
+            <h1>{{ serie.name }}</h1>
+            <p>
+                {{ serie.overview }}
+            </p>
+        </div>
+    </section>
+
 {% endblock %}
 
