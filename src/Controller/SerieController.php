@@ -14,7 +14,8 @@ class SerieController extends AbstractController
     public function list(SerieRepository $serieRepository): Response
     {
         // Récupérer les séries en base de données
-        $series = $serieRepository->findAll();
+        $series = $serieRepository->findBy([], ['firstAirDate' => 'DESC', 'name' => 'ASC']);
+        // SQL généré : SELECT * FROM serie ORDER BY first_air_date DESC, name ASC;
 
         return $this->render('serie/index.html.twig', [
             'series' => $series
