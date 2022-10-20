@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\SerieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,19 +11,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class SerieController extends AbstractController
 {
     #[Route('/', name: 'series_list')]
-    public function list(): Response
+    public function list(SerieRepository $serieRepository): Response
     {
-        // TODO: Récupérer les séries en base de données
-        $series = [
-            [
-                'id' => 1,
-                'title' => 'Game of thrones'
-            ],
-            [
-                'id' => 2,
-                'title' => 'The office'
-            ]
-        ];
+        // Récupérer les séries en base de données
+        $series = $serieRepository->findAll();
 
         return $this->render('serie/index.html.twig', [
             'series' => $series

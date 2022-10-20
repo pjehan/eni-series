@@ -50,3 +50,25 @@ nav ul {
     list-style: none;
     padding-left: 0;
 }
+
+.series-list {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+.serie-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 30px;
+}
+
+.serie-details-infos > div {
+    margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 700px) {
+    .serie-details {
+        grid-template-columns: 300px 1fr;
+    }
+}

@@ -9,15 +9,16 @@
 
     <a href="{{ path('series_new') }}">Ajouter une série</a>
 
-    <ul>
+    <section class="series-list">
         {% for serie in series %}
-            <li>
+            <article>
                 <a href="{{ path('series_detail', {'id': serie.id}) }}">
-                    {{ serie.title }}
+                    <img src="{{ asset('uploads/posters/series/' ~ serie.poster) }}" alt="{{ serie.name }}">
+                    {{ serie.name }}
                 </a>
-            </li>
+            </article>
         {% endfor %}
-    </ul>
+    </section>
 
 {% endblock %}
 
