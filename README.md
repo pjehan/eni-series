@@ -48,6 +48,14 @@ Créer une entité (c'est la partie qui demande de la concentration donc on éte
 php bin/console make:entity
 ```
 
+Mettre à jour la base de données directement
+
+```shell
+php bin/console doctrine:schema:update --force
+```
+
+OU bien en passant par des migrations :
+
 Générer les migrations
 
 ```shell
