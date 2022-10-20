@@ -14,6 +14,7 @@ class SerieController extends AbstractController
     public function list(SerieRepository $serieRepository): Response
     {
         // Récupérer les séries en base de données
+        // $series = $serieRepository->findAllBetweenDates(new \DateTime('2019-01-01'), new \DateTime('2019-12-31'));
         $series = $serieRepository->findBy([], ['firstAirDate' => 'DESC', 'name' => 'ASC']);
         // SQL généré : SELECT * FROM serie ORDER BY first_air_date DESC, name ASC;
 
