@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\SerieRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: SerieRepository::class)]
 class Serie
@@ -14,15 +15,23 @@ class Serie
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\NotBlank(message: 'Le nom ne peut pas être vide')]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[Assert\NotBlank(message: 'Le résumé ne peut pas être vide')]
+    #[Assert\Length(min: 10, minMessage: 'Le résumé doit faire plus de 10 caractères')]
     #[ORM\Column(type: Types::TEXT)]
     private ?string $overview = null;
 
     #[ORM\Column(length: 255)]
     private ?string $status = null;
 
+    #[Assert\Range(
+        notInRangeMessage: 'Le vote doit être entre {{ min }} et {{ max }}',
+        min: 0,
+        max: 10,
+    )]
     #[ORM\Column]
     private ?float $vote = null;
 
@@ -32,6 +41,10 @@ class Serie
     #[ORM\Column(length: 255)]
     private ?string $genres = null;
 
+    #[Assert\Expression(
+        "this.getFirstAirDate() < this.getLastAirDate()",
+        message: 'La date de première diffusion doit être antérieure à la date de dernière diffusion'
+    )]
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $firstAirDate = null;
 
@@ -47,9 +60,11 @@ class Serie
     #[ORM\Column]
     private ?int $tmdbId = null;
 
+    #[Assert\LessThanOrEqual('today')]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateCreated = null;
 
+    #[Assert\LessThanOrEqual('today')]
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateModified = null;
 

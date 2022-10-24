@@ -49,7 +49,7 @@ class SerieController extends AbstractController
         $serieForm->handleRequest($request);
 
         // Vérifier si l'utilisateur est en train d'envoyer le formulaire
-        if ($serieForm->isSubmitted()) {
+        if ($serieForm->isSubmitted() && $serieForm->isValid()) {
             // Enregistrer la nouvelle série en BDD
             $em->persist($serie);
             $em->flush();
