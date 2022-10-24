@@ -33,6 +33,10 @@ class SerieController extends AbstractController
         // Récupérer la série à afficher en base de données
         $serie = $serieRepository->find($id);
 
+        if ($serie === null) {
+            throw $this->createNotFoundException('Page not found');
+        }
+
         return $this->render('serie/detail.html.twig', [
             'serie' => $serie
         ]);
