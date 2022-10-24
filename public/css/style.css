@@ -67,6 +67,27 @@ nav ul {
     margin-bottom: 1rem;
 }
 
+label {
+    display: block;
+}
+
+.form-row {
+    margin-bottom: 1rem;
+}
+
+.flash {
+    padding: 1rem;
+    color: black;
+}
+
+.flash-success {
+    background-color: lightgreen;
+}
+
+.flash-error {
+    background-color: indianred;
+}
+
 @media screen and (min-width: 700px) {
     .serie-details {
         grid-template-columns: 300px 1fr;
