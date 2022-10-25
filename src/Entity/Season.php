@@ -136,6 +136,7 @@ class Season
     public function setSerie(?Serie $serie): self
     {
         $this->serie = $serie;
+        $serie->addSeason($this);
 
         return $this;
     }
