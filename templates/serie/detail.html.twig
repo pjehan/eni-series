@@ -11,6 +11,22 @@
             <p>
                 {{ serie.overview }}
             </p>
+            <h2>Liste des saisons ({{ serie.seasons|length }}) :</h2>
+            <div class="seasons-list">
+                {% for season in serie.seasons %}
+                    <article class="seasons-details">
+                        <img src="{{ asset('uploads/posters/seasons/' ~ season.poster) }}" alt="Saison n°{{ season.number }}">
+                        <h4>Saison n°{{ season.number }}</h4>
+                        <em>
+                            Date de diffusion :
+                            <time datetime="{{ season.firstAirDate|date('Y-m-d') }}">
+                                {{ season.firstAirDate|date('d/m/Y') }}
+                            </time>
+                        </em>
+                        <p>{{ season.overview }}</p>
+                    </article>
+                {% endfor %}
+            </div>
         </div>
     </section>
 

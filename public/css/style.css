@@ -67,6 +67,17 @@ nav ul {
     margin-bottom: 1rem;
 }
 
+.seasons-list {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+
+.seasons-details {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
 label {
     display: block;
 }

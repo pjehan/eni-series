@@ -239,6 +239,9 @@ class Serie
         return $this;
     }
 
+    /**
+     * @return Collection<int, Season>
+     */
     public function getSeasons(): Collection
     {
         return $this->seasons;
