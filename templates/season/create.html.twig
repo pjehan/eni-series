@@ -1,0 +1,17 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Ajout d'une saison{% endblock %}
+
+{% block body %}
+
+    <h1>Ajout d'une saison</h1>
+
+    {{ form_start(seasonForm) }}
+
+        {{ form_widget(seasonForm) }}
+
+        <button>Ajouter</button>
+
+    {{ form_end(seasonForm) }}
+
+{% endblock %}
