@@ -1,0 +1,9 @@
+version: "3.4"
+
+services:
+  maildev:
+    image: maildev/maildev
+    command: bin/maildev --web 80 --smtp 25 --hide-extensions STARTTLS
+    ports:
+      - "1080:80"
+      - "1025:25"
