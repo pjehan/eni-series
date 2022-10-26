@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+{% extends "layout.html.twig" %}
 
-<title>Register</title>
+{% block title %}Créer un compte{% endblock %}
 
 {% block body %}
     {% for flash_error in app.flashes('verify_email_error') %}
