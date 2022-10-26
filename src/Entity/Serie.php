@@ -62,11 +62,11 @@ class Serie
     #[ORM\Column]
     private ?int $tmdbId = null;
 
-    #[Assert\LessThanOrEqual('today')]
+    #[Assert\LessThan('tomorrow')]
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dateCreated = null;
 
-    #[Assert\LessThanOrEqual('today')]
+    #[Assert\LessThan('tomorrow')]
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateModified = null;
 

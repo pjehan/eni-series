@@ -19,7 +19,11 @@
 
 <div class="example-wrapper">
     {# Affichage du nom du controlleur #}
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    {% if app.user %}
+        <h1>Hello {{ app.user.firstName }}! ✅</h1>
+    {% else %}
+        <h1>Hello {{ controller_name }}! ✅</h1>
+    {% endif %}
 
     <p>Ville : {{ city|capitalize }}</p>
 
