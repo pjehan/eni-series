@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Entity\Serie;
 use App\Form\SerieType;
 use App\Repository\SerieRepository;
+use App\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -45,7 +47,7 @@ class SerieController extends AbstractController
 
     #[Route('/new', name: 'series_new')]
     #[IsGranted('ROLE_ADMIN')]
-    public function new(Request $request, EntityManagerInterface $em): Response
+    public function new(Request $request, EntityManagerInterface $em, FileUploader $fileUploader): Response
     {
         $serie = new Serie();
         $serie->setDateCreated(new \DateTime()); // Ou utiliser les LifeCycleCallbacks de Doctrine
@@ -57,6 +59,21 @@ class SerieController extends AbstractController
         // Vérifier si l'utilisateur est en train d'envoyer le formulaire
         if ($serieForm->isSubmitted() && $serieForm->isValid()) {
             // $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+            // Uploader les images
+            /** @var UploadedFile $backdropImage */
+            $backdropImage = $serieForm->get('backdropFile')->getData();
+            if ($backdropImage) {
+                $backdrop = $fileUploader->upload($backdropImage, '/backdrops');
+                $serie->setBackdrop($backdrop);
+            }
+
+            /** @var UploadedFile $posterImage */
+            $posterImage = $serieForm->get('posterFile')->getData();
+            if ($posterImage) {
+                $poster = $fileUploader->upload($posterImage, '/posters/series');
+                $serie->setPoster($poster);
+            }
 
             // Enregistrer la nouvelle série en BDD
             $em->persist($serie);
