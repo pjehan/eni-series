@@ -28,7 +28,7 @@ class SeasonType extends AbstractType
             ->add('number')
             ->add('firstAirDate')
             ->add('overview')
-            ->add('poster', FileType::class)
+            ->add('poster', FileType::class, ['data_class' => null, 'required' => false])
             ->add('tmdbId')
         ;
     }
